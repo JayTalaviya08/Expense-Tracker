@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Flex, Box } from "@chakra-ui/react";
+import "./App.css";
+import Main from "./component/main/main";
+import { useContext } from "react";
+import { GlobleContext } from "./context/contextindex";
 
 function App() {
+  const { totalExpense, totalIncome } = useContext(GlobleContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container
+      bg={totalIncome - totalExpense < 0 ? "red.100" : "blue.100"}
+      maxW={"container.3xl"}
+      height={"100vh"}
+      p={"0"}
+    >
+      <Flex height={"full"}>
+        <Box height={"full"} flex={5} w={["20%", "30%", "20%", "50%", "60%"]}>
+          <Main />
+        </Box>
+      </Flex>
+    </Container>
   );
 }
 
